@@ -16,11 +16,12 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.text :buddhism_exp
       t.text :skills
 
-      add_index :users, :id_number
-      add_index :users, :cellphone_number
-      add_index [:first_name, :last_name]
-
       t.timestamps
     end
+
+    add_index :users, :id_number
+    add_index :users, :cellphone_number
+    add_index :users, [:first_name, :last_name]
+
   end
 end
