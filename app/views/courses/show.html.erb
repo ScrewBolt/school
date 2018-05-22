@@ -10,5 +10,6 @@
   <%= @course.started_at %>
 </p>
 
+<%= link_to 'New Users', users_path(course_id: @course.id) %>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

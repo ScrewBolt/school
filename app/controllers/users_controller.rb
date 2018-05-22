@@ -24,8 +24,20 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    @course = Course.find(params[:course][:id])
     @user = User.new(user_params)
 
+    # FIXME: 僧眾的代碼
+    # FIXME  這一段邏輯可能要放到model
+    id_number = String.new
+    id_number[0] = @user.utype == '在家' ? 'G' : 'M'
+    id_number[1] = @user.sex == '男' ? 'M' : 'F'
+    id_number[2..5] = Date.current.year.to_s
+    id_number[6..7] = @course.id_number.to_s
+    id_number << (@course.users.count + 1).to_s
+    @user.id_number = id_number
+
+    @user.courses << @course
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
