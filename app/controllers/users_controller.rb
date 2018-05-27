@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     # FIXME: 僧眾的代碼
     # FIXME  這一段邏輯可能要放到model
     id_number = String.new
-    id_number[0] = @user.utype == '在家' ? 'G' : 'M'
+    id_number[0] = @user.utype == '在家' ? 'G' : 'N'
     id_number[1] = @user.sex == '男' ? 'M' : 'F'
     id_number[2..5] = Date.current.year.to_s
     id_number[6..7] = @course.id_number.to_s
