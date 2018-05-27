@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(version: 2018_05_21_230715) do
   create_table "courses_users", force: :cascade do |t|
     t.integer "course_id"
     t.integer "user_id"
+    t.boolean "is_major"
+    t.index ["course_id", "is_major"], name: "index_courses_users_on_course_id_and_is_major"
+    t.index ["course_id", "user_id"], name: "index_courses_users_on_course_id_and_user_id"
+    t.index ["user_id", "is_major"], name: "index_courses_users_on_user_id_and_is_major"
   end
 
   create_table "users", force: :cascade do |t|

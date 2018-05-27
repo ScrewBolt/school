@@ -40,6 +40,10 @@ class UsersController < ApplicationController
     @user.courses << @course
     respond_to do |format|
       if @user.save
+        cu_relation = CoursesUser.find_by(user_id: @user.id, course_id: @course.id)
+        cu_relation.is_major = true
+        cu_relation.save
+
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

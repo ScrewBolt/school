@@ -4,5 +4,6 @@ class Course < ApplicationRecord
                         :length => { is: 2 }
   validates :started_at, :presence => true
 
+  has_many :courses_user
   has_and_belongs_to_many :users
 end
